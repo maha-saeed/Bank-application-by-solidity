@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+      <style>
+         body {
+         background: linear-gradient(45deg, #FC466B, #3F5EFB);
+         height: 100vh;
+         font-family: "Montserrat", sans-serif;
+         background-image: url(https://images.unsplash.com/photo-1663900108404-a05e8bf82cda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80);
+         }
+         .container {
+         position: absolute;
+         transform: translate(-50%, -50%);
+         top: 90%;
+         left: 50%;
+         
+         }
+         form {
+         background: rgba(255, 255, 255, 0.3);
+         padding: 3em;
+         height:1250px;
+         border-radius: 20px;
+         border-left: 1px solid rgba(255, 255, 255, 0.3);
+         border-top: 1px solid rgba(255, 255, 255, 0.3);
+         -webkit-backdrop-filter: blur(10px);
+         backdrop-filter: blur(10px);
+         box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, 0.2);
+         text-align: center;
+         position: relative;
+         transition: all 0.2s ease-in-out;
+         }
+         form p {
+         font-weight: 500;
+         color: #fff;
+         opacity: 0.7;
+         font-size: 1.4rem;
+         margin-top: 0;
+         margin-bottom: 60px;
+         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+         }
+         form a {
+         text-decoration: none;
+         color: #ddd;
+         font-size: 12px;
+         }
+         form a:hover {
+         text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2509803922);
+         }
+         form a:active {
+         text-shadow: none;
+         }
+         form input {
+         background: transparent;
+         width: 200px;
+         padding: 1em;
+         margin-bottom: 2em;
+         border: none;
+         border-left: 1px solid rgba(255, 255, 255, 0.3);
+         border-top: 1px solid rgba(255, 255, 255, 0.3);
+         border-radius: 5000px;
+         -webkit-backdrop-filter: blur(5px);
+         backdrop-filter: blur(5px);
+         box-shadow: 4px 4px 60px rgba(0, 0, 0, 0.2);
+         color: #fff;
+         font-family: Montserrat, sans-serif;
+         font-weight: 500;
+         transition: all 0.2s ease-in-out;
+         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+         }
+         form input:hover {
+         background: rgba(255, 255, 255, 0.1);
+         box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+         }
+          
+         form input[type=button] {
+         margin-top: 10px;
+         width: 350px;
+         font-size: 1rem;
+         }
+         form input[type=button]:hover {
+         cursor: pointer;
+         }
+         form input[type=button]:active {
+         background: rgba(255, 255, 255, 0.2);
+         }
+         form:hover {
+         margin: 4px;
+         }
+         ::-moz-placeholder {
+         font-family: Montserrat, sans-serif;
+         font-weight: 400;
+         color: #fff;
+         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+         }
+         ::placeholder {
+         font-family: Montserrat, sans-serif;
+         font-weight: 400;
+         color: #fff;
+         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+         }
+         .drop {
+         background: rgba(255, 255, 255, 0.3);
+         -webkit-backdrop-filter: blur(10px);
+         backdrop-filter: blur(10px);
+         border-radius: 10px;
+         border-left: 1px solid rgba(255, 255, 255, 0.3);
+         border-top: 1px solid rgba(255, 255, 255, 0.3);
+         box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+         position: absolute;
+         transition: all 0.2s ease;
+         
+         }
+         .drop-1 {
+         height: 80px;
+         width: 80px;
+         top: -20px;
+         left: -40px;
+         z-index: -1;
+         }
+         .drop-2 {
+         height: 80px;
+         width: 80px;
+         bottom: -30px;
+         right: -10px;
+         }
+         .drop-3 {
+         height: 100px;
+         width: 100px;
+         bottom: 120px;
+         right: -50px;
+         z-index: -1;
+         }
+         .drop-4 {
+         height: 120px;
+         width: 120px;
+         top: -60px;
+         right: -60px;
+         }
+        
+         a,
+         input:focus,
+         select:focus,
+         textarea:focus,
+         button:focus {
+         outline: none;
+         }
+      </style>
+   </head>
+   <body>
+      <br><br>
+      <div id="readArea" >
+      <div class="container">
+      <form >
+         <p>Welcome To 2030 KSA Bank</p>
+         <input type="button" onclick="connectMetamask()" value="CONNECT TO METAMASK">
+         <p id="userArea">Status: Not connected to Metamask</p>
+         <input type="button" onclick="connectContract()" value=" CONNECT TO CONTRACT">
+         <p   id="contractArea">Status: Not connected to Contract</p>
+         <input type="button"  onclick="getContractAccount()" value=" GET CONTRACT ACCOUNT">  <br>
+         <p  id="contractAccount">Contract Account: Not Connected to Contract</p>
+         <input type="button"  onclick="getBalanceApple()" value="GET BALANCE OF THE CONTRACT"><br>
+         <p  id="balanceArea">Balance: Not Connected to Contract</p>
+         <div id="writeArea">
+            <input type="button" onclick="depositContract()" value="Send ether to the Contract"><br><br>
+            <input  style="width: 300px;" type="number" id="depositInput" placeholder="Enter Amount"><br> <br>
+            <input type="button" onclick="withdraw()" value="WITHDRAW ETHER TO ANY ADDRESS"><br><br>
+            <input style="width: 300px;" type="text" id="addressInput" placeholder="Enter Address"> <br><br>
+            <input style="width: 300px;" type="number" id="amountInput" placeholder="Enter Amount"> 
+            <div class="col-lg-6"><br><br>
+            </div>
+      </form>
+      <div class="drops">
+      <div class="drop drop-1"></div>
+      <div class="drop drop-2"></div>
+      <div class="drop drop-3"></div>
+      <div class="drop drop-4"></div>
+      <div class="drop drop-5"></div>
+      </div>
+      </div>
+      <script>
+         let account;
+         const connectMetamask = async () => {
+             if(window.ethereum !== "undefined") {
+                 const accounts = await ethereum.request({method: "eth_requestAccounts"});
+                 account = accounts[0];
+                 document.getElementById("userArea").innerHTML = `User Account: ${account}`;
+             }
+         }
+         
+         const connectContract = async () => {
+             const ABI = [
+    {
+      "inputs": [],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function",
+      "payable": true
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "_to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "getAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    }
+  ];
+             const Address = "0x572F839Bc0C61551A320491CcF5301f01eF1b1a6";
+             window.web3 = await new Web3(window.ethereum);
+             window.contract = await new window.web3.eth.Contract(ABI, Address);
+             document.getElementById("contractArea").innerHTML = "Connected to Contract";
+         }
+         
+         const getContractAccount = async () => {
+             const data = await window.contract.methods.getAddress().call();
+             document.getElementById("contractAccount").innerHTML = `Contract Account: ${data}`;
+         }
+         
+         const getBalanceApple = async () => {
+             const data = await window.contract.methods.getBalance().call();
+             document.getElementById("balanceArea").innerHTML = `Contract Balance: ${data}`;
+         }
+         
+         const depositContract = async () => {
+             const amount = document.getElementById("depositInput").value;
+             await window.contract.methods.deposit().send({from: account, value: amount});
+         }
+         
+         const withdraw = async () => {
+             const amount = document.getElementById("amountInput").value;
+             const address = document.getElementById("addressInput").value;
+             await window.contract.methods.withdraw(address, amount).send({from: account});
+         }
+         
+      </script>
+   </body>
+</html>
